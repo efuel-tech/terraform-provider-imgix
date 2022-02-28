@@ -20,7 +20,7 @@ jobs:
         uses: paultyng/ghaction-import-gpg@v2.1.0
         env:
           GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-          PASSPHRASE: ${{ secrets.PASSPHRASE }}
+          PASSPHRASE: ""
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
@@ -28,4 +28,4 @@ jobs:
           args: release --rm-dist
         env:
           GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
