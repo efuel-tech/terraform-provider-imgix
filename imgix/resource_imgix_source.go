@@ -183,6 +183,7 @@ func resourceImgixSource() *schema.Resource {
 							Type:        schema.TypeString,
 							Optional:    true,
 							Description: sourceDescriptions["s3_access_key"],
+							Sensitive:   true,
 						},
 						"s3_secret_key": {
 							Type:        schema.TypeString,
@@ -204,6 +205,7 @@ func resourceImgixSource() *schema.Resource {
 							Type:        schema.TypeString,
 							Optional:    true,
 							Description: sourceDescriptions["gcs_access_key"],
+							Sensitive:   true,
 						},
 						"gcs_secret_key": {
 							Type:        schema.TypeString,
