@@ -142,6 +142,10 @@ func (c *client) createSource(source *Source) (*Source, error) {
 
 	newSource := &Source{}
 	_ = json.NewDecoder(res.Body).Decode(newSource)
+	log.Printf(
+		"[TRACE] ========> %s",
+		"PASOOOOOOOOOOOOOOOOOOOOOOO",
+	)
 	return newSource, nil
 }
 
