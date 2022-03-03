@@ -140,13 +140,21 @@ func (c *client) createSource(source *Source) (*Source, error) {
 		)
 	}
 
-	newSource := &Source{}
-	_ = json.NewDecoder(res.Body).Decode(newSource)
+	sourceRequest := &SourceRequest{}
+	_ = json.NewDecoder(res.Body).Decode(sourceRequest)
 	log.Printf(
 		"[TRACE] ========> %s",
-		"PASOOOOOOOOOOOOOOOOOOOOOOO",
+		"PASOOOOOOOOOOOOOOOOOOOOOOO REQUEST",
 	)
-	return newSource, nil
+	return sourceRequest.Data, nil
+
+	//newSource := &Source{}
+	//_ = json.NewDecoder(res.Body).Decode(newSource)
+	//log.Printf(
+	//	"[TRACE] ========> %s",
+	//	"PASOOOOOOOOOOOOOOOOOOOOOOO",
+	//)
+	//return newSource, nil
 }
 
 func (c *client) updateSource(source *Source) (*Source, error) {
