@@ -327,6 +327,10 @@ func resourceSourceCreate(ctx context.Context, d *schema.ResourceData, i interfa
 		return diag.FromErr(err)
 	}
 
+	if newSource == nil {
+		return diag.Errorf("unexpected: %s", "ES NULLLLLLLLLL")
+	}
+
 	d.SetId(*newSource.Id)
 
 	return resourceSourceRead(ctx, d, i)

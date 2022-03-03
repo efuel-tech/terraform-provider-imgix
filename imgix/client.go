@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 )
 
@@ -123,6 +124,20 @@ func (c *client) createSource(source *Source) (*Source, error) {
 		return nil, err
 	} else if res.StatusCode != http.StatusCreated {
 		return nil, serializeApiError(res)
+	}
+
+	text, err2 := ioutil.ReadAll(res.Body)
+
+	if err2 != nil {
+		log.Printf(
+			"[ERROR] ========> %s",
+			"INVALID BODY",
+		)
+	} else {
+		log.Printf(
+			"[TRACE] ========> %s",
+			text,
+		)
 	}
 
 	newSource := &Source{}
