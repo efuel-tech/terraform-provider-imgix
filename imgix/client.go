@@ -126,19 +126,21 @@ func (c *client) createSource(source *Source) (*Source, error) {
 		return nil, serializeApiError(res)
 	}
 
-	text, err2 := ioutil.ReadAll(res.Body)
+	defer res.Body.Close()
 
-	if err2 != nil {
-		log.Printf(
-			"[ERROR] ========> %s",
-			"INVALID BODY",
-		)
-	} else {
-		log.Printf(
-			"[TRACE] ========> %s",
-			text,
-		)
-	}
+	//text, err2 := ioutil.ReadAll(res.Body)
+	//
+	//if err2 != nil {
+	//	log.Printf(
+	//		"[ERROR] ========> %s",
+	//		"INVALID BODY",
+	//	)
+	//} else {
+	//	log.Printf(
+	//		"[TRACE] ========> %s",
+	//		text,
+	//	)
+	//}
 
 	sourceRequest := &SourceRequest{}
 	_ = json.NewDecoder(res.Body).Decode(sourceRequest)
@@ -146,11 +148,11 @@ func (c *client) createSource(source *Source) (*Source, error) {
 		"[TRACE] ========> %s",
 		"PASOOOOOOOOOOOOOOOOOOOOOOO REQUEST",
 	)
-	src, _ := json.Marshal(sourceRequest)
-	log.Printf(
-		"[TRACE] ========> %s",
-		src,
-	)
+	//src, _ := json.Marshal(sourceRequest)
+	//log.Printf(
+	//	"[TRACE] ========> %s",
+	//	src,
+	//)
 
 	return sourceRequest.Data, nil
 
