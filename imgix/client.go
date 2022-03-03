@@ -146,6 +146,12 @@ func (c *client) createSource(source *Source) (*Source, error) {
 		"[TRACE] ========> %s",
 		"PASOOOOOOOOOOOOOOOOOOOOOOO REQUEST",
 	)
+	src, _ := json.Marshal(sourceRequest)
+	log.Printf(
+		"[TRACE] ========> %s",
+		src,
+	)
+
 	return sourceRequest.Data, nil
 
 	//newSource := &Source{}
