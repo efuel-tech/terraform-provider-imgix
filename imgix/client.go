@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"log"
 	"net/http"
 )
 
@@ -128,41 +127,10 @@ func (c *client) createSource(source *Source) (*Source, error) {
 
 	defer res.Body.Close()
 
-	//text, err2 := ioutil.ReadAll(res.Body)
-	//
-	//if err2 != nil {
-	//	log.Printf(
-	//		"[ERROR] ========> %s",
-	//		"INVALID BODY",
-	//	)
-	//} else {
-	//	log.Printf(
-	//		"[TRACE] ========> %s",
-	//		text,
-	//	)
-	//}
-
 	sourceRequest := &SourceRequest{}
 	_ = json.NewDecoder(res.Body).Decode(sourceRequest)
-	log.Printf(
-		"[TRACE] ========> %s",
-		"PASOOOOOOOOOOOOOOOOOOOOOOO REQUEST",
-	)
-	//src, _ := json.Marshal(sourceRequest)
-	//log.Printf(
-	//	"[TRACE] ========> %s",
-	//	src,
-	//)
 
 	return sourceRequest.Data, nil
-
-	//newSource := &Source{}
-	//_ = json.NewDecoder(res.Body).Decode(newSource)
-	//log.Printf(
-	//	"[TRACE] ========> %s",
-	//	"PASOOOOOOOOOOOOOOOOOOOOOOO",
-	//)
-	//return newSource, nil
 }
 
 func (c *client) updateSource(source *Source) (*Source, error) {

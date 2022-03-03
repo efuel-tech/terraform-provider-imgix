@@ -2,7 +2,6 @@ package imgix
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
@@ -326,16 +325,6 @@ func resourceSourceCreate(ctx context.Context, d *schema.ResourceData, i interfa
 	})
 	if err != nil {
 		return diag.FromErr(err)
-	}
-
-	if newSource == nil {
-		return diag.Errorf("unexpected: %s", "ES NULLLLLLLLLL")
-	} else {
-		src, _ := json.Marshal(newSource)
-		log.Printf(
-			"[TRACE] ========> %s",
-			src,
-		)
 	}
 
 	d.SetId(*newSource.Id)
