@@ -357,7 +357,7 @@ func makeSourceRequest(ctx context.Context, operation func() (*Source, error)) (
 		Pending: []string{"retry"},
 		Target:  []string{"ok"},
 		Delay:   time.Second * 3,
-		Timeout: time.Second * 10,
+		Timeout: time.Second * 60,
 		Refresh: func() (interface{}, string, error) {
 			source, err := operation()
 			if err != nil {
