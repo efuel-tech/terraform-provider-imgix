@@ -51,6 +51,7 @@ Read-Only:
 - **gcs_access_key** (String)
 - **gcs_bucket** (String)
 - **gcs_prefix** (String)
+- **webfolder_base_url** (String)
 - **secure_url_enabled** (Boolean)
 - **type** (String)
 

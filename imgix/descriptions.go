@@ -32,4 +32,5 @@ var sourceDescriptions = map[string]string{
 	"gcs_secret_key":          "GCS Secret Access Key.",
 	"gcs_bucket":              "GCS bucket name.",
 	"gcs_prefix":              "The folder prefix prepended to the image path before resolving the image in GCS.",
+	"webfolder_base_url":      "The protocol, host, and path information to prepend to the image path when retrieving from origin (such as http://www.yourcompany.com/images/).",
 }

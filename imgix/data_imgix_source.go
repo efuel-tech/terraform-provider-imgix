@@ -164,6 +164,11 @@ func dataSourceImgixSource() *schema.Resource {
 							Computed:    true,
 							Description: sourceDescriptions["gcs_prefix"],
 						},
+						"webfolder_base_url": {
+							Type:        schema.TypeString,
+							Computed:    true,
+							Description: sourceDescriptions["webfolder_base_url"],
+						},
 					},
 				},
 			},

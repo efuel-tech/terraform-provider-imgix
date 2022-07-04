@@ -63,6 +63,7 @@ Optional:
 - **gcs_bucket** (String) GCS bucket name.
 - **gcs_prefix** (String) The folder prefix prepended to the image path before resolving the image in GCS.
 - **gcs_secret_key** (String, Sensitive) GCS Secret Access Key.
+- **webfolder_base_url** (String) The protocol, host, and path information to prepend to the image path when retrieving from origin (such as http://www.yourcompany.com/images/).
 - **secure_url_enabled** (Boolean) Whether requests must be signed with the secure_url_token to be considered valid.
 
 Read-Only:

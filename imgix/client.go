@@ -61,6 +61,8 @@ type sourceDeployment struct {
 	GCSSecretKey *string `json:"gcs_secret_key"`
 	GCSBucket    *string `json:"gcs_bucket"`
 	GCSPrefix    *string `json:"gcs_prefix"`
+	
+	WebfolderBaseURL *string `json:"webfolder_base_url"`
 
 	SecureUrlEnabled *bool  `json:"secure_url_enabled"`
 	Type             string `json:"type"`

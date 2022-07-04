@@ -223,6 +223,11 @@ func resourceImgixSource() *schema.Resource {
 							Optional:    true,
 							Description: sourceDescriptions["gcs_prefix"],
 						},
+						"webfolder_base_url": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: sourceDescriptions["webfolder_base_url"],
+						},
 					},
 				},
 			},
@@ -287,6 +292,7 @@ func setResourceDataFieldsFromSource(d *schema.ResourceData, source *Source) {
 	deployment["gcs_access_key"] = source.Attributes.Deployment.GCSAccessKey
 	deployment["gcs_bucket"] = source.Attributes.Deployment.GCSBucket
 	deployment["gcs_prefix"] = source.Attributes.Deployment.GCSPrefix
+	deployment["webfolder_base_url"] = source.Attributes.Deployment.WebfolderBaseURL
 
 	d.Set("deployment", []interface{}{deployment})
 }
@@ -419,6 +425,7 @@ func getSourceFromResourceData(d *schema.ResourceData) (*Source, error) {
 	source.Attributes.Deployment.GCSSecretKey = String(deployment["gcs_secret_key"])
 	source.Attributes.Deployment.GCSBucket = String(deployment["gcs_bucket"])
 	source.Attributes.Deployment.GCSPrefix = String(deployment["gcs_prefix"])
+	source.Attributes.Deployment.WebfolderBaseURL = String(deployment["webfolder_base_url"])
 
 	return source, nil
 }
