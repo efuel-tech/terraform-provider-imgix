@@ -18,28 +18,33 @@ jobs:
   goreleaser:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v3
-      -
-        name: Unshallow
+      - name: Unshallow
         run: git fetch --prune --unshallow
-      -
-        name: Set up Go
+      - name: Set up Go
         uses: actions/setup-go@v3
         with:
           go-version-file: 'go.mod'
           cache: true
-      -
-        name: Import GPG key
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.SERVICE_ACCOUNT }}
+      - id: 'secrets'
+        uses: 'google-github-actions/get-secretmanager-secrets@v0'
+        with:
+          secrets: |-
+            gpg_private_key:${{ secrets.GCP_PROJECT_ID }}/gpg_private_key
+            gpg_passphrase:${{ secrets.GCP_PROJECT_ID }}/gpg_passphrase
+      - name: Import GPG key
         id: import_gpg
-        uses: hashicorp/ghaction-import-gpg@v2.1.0
-        env:
-          # These secrets will need to be configured for the repository:
-          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-          PASSPHRASE: ${{ secrets.PASSPHRASE }}
-      -
-        name: Run GoReleaser
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ steps.secrets.outputs.gpg_private_key }}
+          passphrase: ${{ steps.secrets.outputs.gpg_passphrase }}
+      - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v3.0.0
         with:
           version: latest
